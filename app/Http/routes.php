@@ -11,4 +11,17 @@
 |
 */
 
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
+]);
+//注册登录
+Route::get('auth/login', 'Auth\AuthController@login');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@registerShow');
+Route::post('auth/register', 'Auth\AuthController@registerWrite');
+
 Route::get('/pagetestinfo', "PageTestInfo\InfoController@get");
