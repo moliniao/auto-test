@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use Validator;
+use Validator,View,Input,Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -23,8 +23,7 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    protected $redirectPath = '/index';
-    protected $loginPath = '/login';
+
     /**
      * Create a new authentication controller instance.
      *
@@ -66,15 +65,15 @@ class AuthController extends Controller
     }
     public function login()
     {
-        return View::make('auth\login.blade.php');
+        return View::make('auth.login');
     }
     public function registerShow(){
-        return View::make('auth\register.blade.php');
+        return View::make('auth.register');
     }
     public function registerWrite(){
         //记录信息到数据库
         $user = new User;//实例化User对象
-        $user->username = Input::get('name');
+        $user->name = Input::get('name');
         $user->email = Input::get('email');
         $user->password = Hash::make(Input::get('password'));
         $user->save();

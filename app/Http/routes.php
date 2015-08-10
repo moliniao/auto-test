@@ -11,12 +11,8 @@
 |
 */
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
 //注册登录
-Route::get('auth/login', 'Auth\AuthController@login');
+Route::get('auth/login', 'Auth\AuthController@log in');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
@@ -24,4 +20,9 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@registerShow');
 Route::post('auth/register', 'Auth\AuthController@registerWrite');
 
-Route::get('/pagetestinfo', "PageTestInfo\InfoController@get");
+
+//用户注册新的产品线
+//展现提交框
+Route::get('autotest/produtLineIndex', "autotest\ProductLineController@index");
+
+Route::post('autotest/produtLineCreate', "autotest\ProductLineController@create");
